@@ -34,7 +34,7 @@ public class Empresa implements Serializable {
 	private String razaosocial;
 	
 	@Column(nullable = false, length = 18)
-	private String cpnj;
+	private String cnpj;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_fundacao")
@@ -73,11 +73,11 @@ public class Empresa implements Serializable {
 	}
 
 	public String getCpnj() {
-		return cpnj;
+		return cnpj;
 	}
 
 	public void setCpnj(String cpnj) {
-		this.cpnj = cpnj;
+		this.cnpj = cpnj;
 	}
 
 	public Date getDataFundacao() {

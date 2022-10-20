@@ -6,9 +6,9 @@
 >
 	<persistence-unit name="AlgaWorksPU">
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/cursojsfprimefaces" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.0.0.160/cursojsfprimefaces" />
+			<property name="javax.persistence.jdbc.user" value="user" />
+			<property name="javax.persistence.jdbc.password" value="password@123" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
