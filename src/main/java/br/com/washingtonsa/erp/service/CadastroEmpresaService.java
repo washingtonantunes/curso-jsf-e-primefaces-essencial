@@ -20,6 +20,7 @@ public class CadastroEmpresaService implements Serializable {
 		empresas.guardar(empresa);
 	}
 	
+	@Transacional
 	public void excluir(Empresa empresa) {
 		empresas.remover(empresa);
 	}
