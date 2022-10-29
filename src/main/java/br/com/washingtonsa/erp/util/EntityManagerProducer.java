@@ -22,7 +22,7 @@ public class EntityManagerProducer {
 	public EntityManager createEntityManager() {
 		return this.factory.createEntityManager();
 	}
-	
+
 	public void closeEntityManager(@Disposes EntityManager manager) {
 		manager.close();
 	}
