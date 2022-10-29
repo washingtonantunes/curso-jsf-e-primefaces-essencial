@@ -49,6 +49,10 @@ public class GestaoEmpresasBean implements Serializable {
 		empresa = new Empresa();
 	}
 
+	public void prepararEdicao() {
+		ramoAtividadeConverter = new RamoAtividadeConverter(Arrays.asList(empresa.getRamoAtividade()));
+	}
+
 	public void salvar() {
 		cadastroEmpresaService.salvar(empresa);
 
@@ -59,7 +63,7 @@ public class GestaoEmpresasBean implements Serializable {
 		}
 
 		messages.info("Empresa salva com sucesso!");
-		
+
 		RequestContext.getCurrentInstance().update(Arrays.asList("frm:empresasDataTable", "frm:messages"));
 	}
 
@@ -110,11 +114,11 @@ public class GestaoEmpresasBean implements Serializable {
 	public Empresa getEmpresa() {
 		return empresa;
 	}
-	
+
 	public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-	
+		this.empresa = empresa;
+	}
+
 	public boolean isEmpresaSelecionada() {
 		return empresa != null && empresa.getId() != null;
 	}
