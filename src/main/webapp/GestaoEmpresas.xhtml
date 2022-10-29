@@ -15,14 +15,16 @@
 		<f:viewAction action="#{gestaoEmpresasBean.todasEmpresas}"/>
 	</f:metadata>
 	
-	<h:form>
-		<p:messages autoUpdate="true" />
+	<h:form id="frm">
+		<p:messages id="messages" />
 	
 		<p:toolbar>
 			<f:facet name="left">
-				<p:inputText id="termoPesquisa" placeholder="Digite aqui um termo para pesquisa..." size="30"  value="#{gestaoEmpresasBean.termoPesquisa}" />
+				<p:inputText id="termoPesquisa" placeholder="Digite aqui um termo para pesquisa..." 
+					size="30"  value="#{gestaoEmpresasBean.termoPesquisa}" />
 				
-				<p:commandButton value="Pesquisar" icon="fa fa-search" actionListener="#{gestaoEmpresasBean.pesquisar}" update="empresaDataTable"
+				<p:commandButton value="Pesquisar" icon="fa fa-search" 
+					actionListener="#{gestaoEmpresasBean.pesquisar}" update="empresasDataTable messages"
 					process="@this termoPesquisa" />
 				
 				<span class="ui-separator">
@@ -52,7 +54,7 @@
 		
 		<p:spacer height="20px" />
 	
-		<p:dataTable id="empresaDataTable" value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa" emptyMessage="Nenhuma informação a ser exibida" 
+		<p:dataTable id="empresasDataTable" value="#{gestaoEmpresasBean.listaEmpresas}" var="empresa" emptyMessage="Nenhuma informação a ser exibida" 
 			paginator="true" rows="10" paginatorPosition="bottom">
 			<p:column headerText="Razão social" sortBy="#{empresa.razaoSocial}">
 				<h:outputText value="#{empresa.razaoSocial}"/>
@@ -72,14 +74,16 @@
 		</p:dataTable>
 		
 		<p:dialog id="empresaDialog" header="Nova empresa" widgetVar="empresaDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true">
+			<p:messages id="empresaMessages" />
+		
 			<h:panelGrid id="empresaPanelGrid" columns="2" rendered="#{gestaoEmpresasBean.empresa ne null}">
 				<p:outputLabel value="Razão social: " for="razaoSocial" />
 				<p:inputText id="razaoSocial" size="80" maxlength="120" value="#{gestaoEmpresasBean.empresa.razaoSocial}" />
 				
 				<p:outputLabel value="Nome fantasia: " for="nomeFantasia" />
-				<p:inputText id="nomeFantasia" size="80" maxlength="120" value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
+				<p:inputText id="nomeFantasia" size="80" maxlength="80" value="#{gestaoEmpresasBean.empresa.nomeFantasia}" />
 				
-				<p:outputLabel value="Nome fantasia: " for="tipo" />
+				<p:outputLabel value="Tipo empresa: " for="tipo" />
 				<p:selectOneMenu id="tipo" value="#{gestaoEmpresasBean.empresa.tipo}">
 					<f:selectItem itemLabel="Selecione..." />
 					<f:selectItems value="#{gestaoEmpresasBean.tiposEmpresa}" 
@@ -100,8 +104,9 @@
 				
 				<h:outputLabel/>
 				<p:commandButton value="Salvar" actionListener="#{gestaoEmpresasBean.salvar}" 
-				update="empresaDataTable empresaPanelGrid" oncomplete="PF('empresaDialogWidgetVar').hide()"
-				process="empresaDialog" />
+					update="empresaPanelGrid empresaMessages" 
+					oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()"
+					process="empresaDialog" />
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
